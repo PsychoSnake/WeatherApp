@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="pt.isel.weatherapp.MainActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="134dp"
+            android:layout_marginTop="50dp"
+            android:id="@+id/get_weather"
+            tools:text="Get Weather"
+            android:text="Get Weather" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_below="@+id/get_weather"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="72dp"
+            android:id="@+id/temperature"
+            android:layout_height="50dp"
+            tools:text="Temperature"
+            android:text="Temperature" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/temperature"
+            android:layout_alignStart="@+id/temperature"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="91dp"
+            android:id="@+id/cloud"
+            tools:text="Cloud Cover"
+            android:text="Cloud Cover" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/cloud"
+            android:layout_alignEnd="@+id/wind"
+            android:layout_marginEnd="9dp"
+            android:id="@+id/humidity"
+            tools:text="Humidity"
+            android:text="Humidity" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/wind"
+            tools:text="Wind Speed"
+            android:text="Wind Speed"
+            android:layout_above="@+id/cloud"
+            android:layout_toEndOf="@+id/get_weather" />
+
+        <TextView
+            android:text="Country to Search:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            tools:text="Country to Search:"
+            android:layout_alignBaseline="@+id/country_name"
+            android:layout_alignBottom="@+id/country_name"
+            android:layout_toStartOf="@+id/country_name" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:ems="10"
+            android:id="@+id/country_name"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@+id/humidity" />
+    </RelativeLayout>
+</LinearLayout>
