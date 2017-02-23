@@ -16,24 +16,24 @@ import pt.isel.weatherapp.Infos.Location;
 
 public class MainActivity extends AppCompatActivity {
     private TextView temp,wind,cloud,humidity;
-    private EditText country_name;
+    private EditText country_name,date,time;
     private Button weather;
     private final double LATITUDE = 37.019355;
     private final double LONGITUDE = -7.93044;
-    private View view;
     private Manager manager = new Manager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        view = new View(this);
         temp = (TextView) findViewById(R.id.temperature);
         wind = (TextView) findViewById(R.id.wind);
         cloud = (TextView) findViewById(R.id.cloud);
         humidity = (TextView) findViewById(R.id.humidity);
         weather = (Button) findViewById(R.id.get_weather);
         country_name = (EditText) findViewById(R.id.country_name);
+        date = (EditText) findViewById(R.id.date);
+        time = (EditText) findViewById(R.id.time);
         weather.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
                     Geocoder geo = new Geocoder(MainActivity.this);
                     List<Address> list = geo.getFromLocationName(country_name.getText().toString(),1);
                     Location loc = new Location(list.get(0).getCountryName(),list.get(0).getLatitude(),list.get(0).getLongitude());
-                    Date date = new Date("2016","02","05","12","13","01");
-                    String response = manager.download(loc,date);
+                    Date dt = new Date(date.getText().toString().split("-"),time.getText().toString().split(":"));
+                    String response = manager.download(loc,dt);
                     JsonObject obj = manager.translateToJSON(response);
                     String temperature = obj.get("currently").getAsJsonObject().get("temperature").getAsString();
                     String cloudCover = obj.get("currently").getAsJsonObject().get("cloudCover").getAsFloat()*100+"%";

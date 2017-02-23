@@ -4,13 +4,13 @@ package pt.isel.weatherapp.Infos;
 public class Date {
     private String year,month,day,hour,minute,second;
 
-    public Date(String year, String month, String day, String hour, String minute, String second) {
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.hour = hour;
-        this.minute = minute;
-        this.second = second;
+    public Date(String[] date,String[] time) {
+        this.year = date[0];
+        this.month = date[1];
+        this.day = date[2];
+        this.hour = time[0];
+        this.minute = time[1];
+        this.second = time[2];
     }
 
     @Override
