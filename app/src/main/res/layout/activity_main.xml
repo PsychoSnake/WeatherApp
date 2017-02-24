@@ -55,21 +55,6 @@
 
         <TextView
             android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:id="@+id/humidity"
-            android:layout_below="@+id/wind"
-            android:layout_alignStart="@+id/wind" />
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:id="@+id/wind"
-            android:layout_above="@+id/cloud"
-            android:layout_toEndOf="@+id/get_weather"
-            android:layout_marginBottom="67dp" />
-
-        <TextView
-            android:layout_width="100dp"
             android:layout_marginStart="25dp"
             android:id="@+id/temperature"
             android:layout_height="50dp"
@@ -86,28 +71,12 @@
             android:id="@+id/textView2" />
 
         <TextView
-            android:text="Wind Speed:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/wind"
-            android:layout_alignStart="@+id/wind"
-            android:id="@+id/textView3" />
-
-        <TextView
             android:text="Cloud Cover:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/cloud"
             android:layout_alignStart="@+id/cloud"
             android:id="@+id/textView4" />
-
-        <TextView
-            android:text="Humidity:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/humidity"
-            android:layout_alignStart="@+id/humidity"
-            android:id="@+id/textView5" />
 
         <TextView
             android:text="Date to search:"
@@ -146,7 +115,41 @@
             android:id="@+id/date"
             android:layout_alignBaseline="@+id/textView6"
             android:layout_alignBottom="@+id/textView6"
-            android:layout_toEndOf="@+id/textView4" />
+            android:layout_toEndOf="@+id/textView4"
+            android:fontFamily="sans-serif" />
+
+        <TextView
+            android:text="Humidity:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:layout_above="@+id/humidity"
+            android:layout_alignEnd="@+id/get_weather"
+            android:layout_marginEnd="12dp" />
+
+        <TextView
+            android:text="Wind Speed:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_above="@+id/wind"
+            android:layout_alignStart="@+id/textView5" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/wind"
+            android:layout_marginBottom="30dp"
+            android:layout_above="@+id/textView5"
+            android:layout_alignStart="@+id/textView3" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/humidity"
+            android:layout_alignBaseline="@+id/cloud"
+            android:layout_alignBottom="@+id/cloud"
+            android:layout_alignStart="@+id/textView5" />
 
     </RelativeLayout>
 </LinearLayout>

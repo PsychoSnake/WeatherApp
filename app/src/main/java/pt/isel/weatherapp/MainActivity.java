@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText country_name, date, time;
     private Manager manager = new Manager();
 
+    //TODO meter calendarView ou DatePicker para escolher um dia e um timePicker para uma hora em especifico. Possivelmente criar uma nova actividade para fazer estas coisas e enviar para a atividade que sabera o que fazer com esta informaçao e apresentar ao utilizador
+    //TODO criar uma versao de layout para ter suporte de modo horizontal
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
      * @param obj object that has all the info about the weather
      */
     private void extractInfo(JsonObject obj) {
-        String temperature = obj.get("currently").getAsJsonObject().get("temperature").getAsString();
+        String temperature = obj.get("currently").getAsJsonObject().get("temperature").getAsString()+"ºC";
         String cloudCover = obj.get("currently").getAsJsonObject().get("cloudCover").getAsFloat()*100+"%";
-        String windSpeed = obj.get("currently").getAsJsonObject().get("windSpeed").getAsString();
+        String windSpeed = obj.get("currently").getAsJsonObject().get("windSpeed").getAsString()+"Km/h";
         String humidPer = obj.get("currently").getAsJsonObject().get("humidity").getAsFloat()*100+"%";
         temp.setText(temperature);
         wind.setText(windSpeed);
