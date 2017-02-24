@@ -3,8 +3,6 @@ package pt.isel.weatherapp;
 
 import android.os.AsyncTask;
 
-import com.google.gson.JsonObject;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -12,6 +10,11 @@ import java.net.URL;
 
 public class NetworkManager extends AsyncTask<String, Void, String> {
 
+    /**
+     * Connects to the site
+     * @param urls the urls to connect
+     * @return the responses from the sites
+     */
     protected String doInBackground(String... urls) {
         try {
             URL url = new URL(urls[0]);
@@ -23,6 +26,12 @@ public class NetworkManager extends AsyncTask<String, Void, String> {
         }
     }
 
+    /**
+     * Using the connection with the site gets its information using a InputStream
+     * @param connection the connection to extract the information
+     * @return the response
+     * @throws IOException
+     */
     private String download(HttpURLConnection connection) throws IOException {
         connection.connect();
         String ret = "";

@@ -1,12 +1,14 @@
 package pt.isel.weatherapp.Infos;
 
-
-public class Location {
+/**
+ * Used to store Location specific information
+ */
+public class Place {
     private double latitude;
     private double longitude;
     private String name;
 
-    public Location(String name, double latitude, double longitude) {
+    public Place(String name, double latitude, double longitude) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
