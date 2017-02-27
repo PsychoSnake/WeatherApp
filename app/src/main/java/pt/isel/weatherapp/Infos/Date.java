@@ -16,33 +16,6 @@ public class Date {
         this.second = time[2];
     }
 
-    public Date(String[] date, String hour, String minute, String second) {
-        this.year = date[0];
-        this.month = date[1];
-        this.day = date[2];
-        this.hour = hour;
-        this.minute = minute;
-        this.second = second;
-    }
-
-    public Date(String year, String month, String day, String[] time) {
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.hour = time[0];
-        this.minute = time[1];
-        this.second = time[2];
-    }
-
-    public Date(String year, String month, String day, String hour, String minute, String second) {
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.hour = hour;
-        this.minute = minute;
-        this.second = second;
-    }
-
     public String getYear() {
         return year;
     }

@@ -8,124 +8,40 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="pt.isel.weatherapp.MainActivity"
+    tools:context="pt.isel.weatherapp.Control.MainActivity"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="134dp"
-            android:layout_marginTop="50dp"
-            android:id="@+id/get_weather"
-            tools:text="Get Weather"
-            android:text="Get Weather" />
-
-        <TextView
-            android:text="Country to Search:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            tools:text="Country to Search:"
-            android:layout_alignBaseline="@+id/country_name"
-            android:layout_alignBottom="@+id/country_name"
-            android:layout_toStartOf="@+id/country_name" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:ems="10"
-            android:id="@+id/country_name"
-            android:layout_alignParentTop="true"
-            android:layout_alignEnd="@+id/humidity" />
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:id="@+id/cloud"
-            android:layout_marginBottom="41dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/temperature" />
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_marginStart="25dp"
-            android:id="@+id/temperature"
-            android:layout_height="50dp"
-            android:layout_alignBaseline="@+id/wind"
-            android:layout_alignBottom="@+id/wind"
-            android:layout_alignStart="@+id/textView" />
-
         <TextView
             android:text="Temperature:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/wind"
+            android:id="@+id/textView2"
+            android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/temperature"
-            android:id="@+id/textView2" />
-
-        <TextView
-            android:text="Cloud Cover:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/cloud"
-            android:layout_alignStart="@+id/cloud"
-            android:id="@+id/textView4" />
-
-        <TextView
-            android:text="Date to search:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/get_weather"
-            android:layout_alignStart="@+id/textView"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="31dp"
-            android:id="@+id/textView6" />
-
-        <TextView
-            android:text="Time:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:id="@+id/textView7"
-            android:layout_below="@+id/textView6"
-            android:layout_alignStart="@+id/textView6" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="time"
-            android:ems="10"
-            android:id="@+id/time"
-            android:layout_alignBaseline="@+id/textView7"
-            android:layout_alignBottom="@+id/textView7"
-            android:layout_toEndOf="@+id/textView7" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/date"
-            android:layout_alignBaseline="@+id/textView6"
-            android:layout_alignBottom="@+id/textView6"
-            android:layout_toEndOf="@+id/textView4"
-            android:fontFamily="sans-serif" />
+            android:layout_marginTop="55dp"
+            tools:text="Temperature:" />
 
         <TextView
             android:text="Humidity:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView5"
-            android:layout_above="@+id/humidity"
-            android:layout_alignEnd="@+id/get_weather"
-            android:layout_marginEnd="12dp" />
+            android:layout_marginEnd="87dp"
+            android:layout_alignBaseline="@+id/textView2"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_marginStart="9dp"
+            android:id="@+id/temperature"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:text="Wind Speed:"
@@ -133,23 +49,49 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView3"
             android:layout_above="@+id/wind"
-            android:layout_alignStart="@+id/textView5" />
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:id="@+id/wind"
-            android:layout_marginBottom="30dp"
-            android:layout_above="@+id/textView5"
-            android:layout_alignStart="@+id/textView3" />
+            android:layout_alignEnd="@+id/textView2" />
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:id="@+id/humidity"
+            android:layout_below="@+id/textView5"
+            android:layout_alignStart="@+id/textView5" />
+
+        <TextView
+            android:text="Cloud Cover:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:layout_above="@+id/cloud"
+            android:layout_alignStart="@+id/cloud" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/wind"
             android:layout_alignBaseline="@+id/cloud"
             android:layout_alignBottom="@+id/cloud"
-            android:layout_alignStart="@+id/textView5" />
+            android:layout_alignStart="@+id/textView3" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/cloud"
+            android:layout_marginBottom="92dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/humidity" />
+
+        <Button
+            android:text="Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperature"
+            android:layout_toEndOf="@+id/wind"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="88dp"
+            android:id="@+id/return_app"
+            android:onClick="endAPP"/>
 
     </RelativeLayout>
 </LinearLayout>

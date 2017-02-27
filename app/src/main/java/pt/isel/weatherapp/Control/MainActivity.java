@@ -1,33 +1,34 @@
-package pt.isel.weatherapp;
+package pt.isel.weatherapp.Control;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import pt.isel.weatherapp.Infos.Date;
 import pt.isel.weatherapp.Infos.Place;
+import pt.isel.weatherapp.Manager;
+import pt.isel.weatherapp.R;
 
 public class MainActivity extends AppCompatActivity {
     private TextView temp, wind, cloud, humidity;
-    private EditText country_name, date, time;
+    private Button return_app;
     private Manager manager = new Manager();
+    private String place_name;
+    private String[] dates,times;
 
-    //TODO meter calendarView ou DatePicker para escolher um dia e um timePicker para uma hora em especifico. Possivelmente criar uma nova actividade para fazer estas coisas e enviar para a atividade que sabera o que fazer com esta informaçao e apresentar ao utilizador
-    //TODO criar uma versao de layout para ter suporte de modo horizontal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,24 +38,24 @@ public class MainActivity extends AppCompatActivity {
         wind = (TextView) findViewById(R.id.wind);
         cloud = (TextView) findViewById(R.id.cloud);
         humidity = (TextView) findViewById(R.id.humidity);
-        Button weather = (Button) findViewById(R.id.get_weather);
-        country_name = (EditText) findViewById(R.id.country_name);
-        date = (EditText) findViewById(R.id.date);
-        time = (EditText) findViewById(R.id.time);
-
-        weather.setOnClickListener(new android.view.View.OnClickListener() {
+        return_app = (Button) findViewById(R.id.return_app);
+        Intent intent = getIntent();
+        place_name = intent.getStringExtra("place_name");
+        dates = intent.getStringExtra("date_text").split("-");
+        times = intent.getStringExtra("time_text").split(":");
+        getWeatherInfo();
+        /*weather.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
                 try {
-                    if (country_name.getText().length() == 0) {
+                    if (place_name.getText().length() == 0) {
                         toast("No Country/City selected.");
                         return;
                     }
                     String bool = date.getText().length()!=Date.getDateSize()?"1":"0";
                     bool += time.getText().length()!=8?"1":"0";
                     Date dt = getdateInfos(bool);
-                    Geocoder geo = new Geocoder(MainActivity.this);
-                    List<Address> list = geo.getFromLocationName(country_name.getText().toString(), 1);
+
                     Place loc = new Place(list.get(0).getCountryName(), list.get(0).getLatitude(), list.get(0).getLongitude());
                     String response = manager.download(loc,dt);
                     JsonObject obj = manager.translateToJSON(response);
@@ -65,8 +66,27 @@ public class MainActivity extends AppCompatActivity {
                     e.getStackTrace();
                 }
             }
-        });
+        });*/
 
+    }
+
+    private void getWeatherInfo() {
+        try {
+            Geocoder geo = new Geocoder(MainActivity.this);
+            Address addr = geo.getFromLocationName(place_name,1).get(0);
+            Place pl = new Place(place_name,addr.getLatitude(),addr.getLongitude());
+            Date dt = new Date(dates,times);
+            String response = manager.download(pl,dt);
+            JsonObject json = manager.translateToJSON(response);
+            extractInfo(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void endAPP(View view){
+        toast("Select a new Date/Time/Place");
+        finish();
     }
 
     /**
@@ -84,11 +104,11 @@ public class MainActivity extends AppCompatActivity {
         humidity.setText(humidPer);
     }
 
-    /**
+/*    *//**
      * Gets the information about the date and time to get the weather
      * @param bool specifies what the user had as input
      * @return the specific date
-     */
+     *//*
     private Date getdateInfos(String bool) {
         Date dt = null;
         String year,month,day,hour,minute,second;
@@ -118,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return dt;
-    }
+    }*/
 
     /**
      * Shows a message for the user
