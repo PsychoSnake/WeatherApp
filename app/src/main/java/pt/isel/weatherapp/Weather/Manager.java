@@ -1,4 +1,4 @@
-package pt.isel.weatherapp;
+package pt.isel.weatherapp.Weather;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

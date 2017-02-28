@@ -10,9 +10,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Control.MainActivity" />
+        <activity android:name=".Weather.MainActivity" />
 
-        <activity android:name=".Control.Menu">
+        <activity android:name=".Menu.Menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

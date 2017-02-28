@@ -1,4 +1,4 @@
-package pt.isel.weatherapp;
+package pt.isel.weatherapp.Weather;
 
 
 import android.os.AsyncTask;

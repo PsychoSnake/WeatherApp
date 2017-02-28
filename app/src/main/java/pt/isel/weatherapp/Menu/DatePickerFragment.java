@@ -1,4 +1,4 @@
-package pt.isel.weatherapp.Picker_Fragments;
+package pt.isel.weatherapp.Menu;
 
 
 import android.app.DatePickerDialog;
@@ -10,7 +10,7 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 import java.util.Locale;
 
-import pt.isel.weatherapp.Control.Menu;
+import pt.isel.weatherapp.Menu.Menu;
 
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {

@@ -1,4 +1,4 @@
-package pt.isel.weatherapp.Control;
+package pt.isel.weatherapp.Weather;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,11 +15,9 @@ import android.widget.Toast;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
-import java.util.List;
 
 import pt.isel.weatherapp.Infos.Date;
 import pt.isel.weatherapp.Infos.Place;
-import pt.isel.weatherapp.Manager;
 import pt.isel.weatherapp.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         wind = (TextView) findViewById(R.id.wind);
         cloud = (TextView) findViewById(R.id.cloud);
         humidity = (TextView) findViewById(R.id.humidity);
-        return_app = (Button) findViewById(R.id.return_app);
+        //return_app = (Button) findViewById(R.id.return_app);
         Intent intent = getIntent();
         place_name = intent.getStringExtra("place_name");
         dates = intent.getStringExtra("date_text").split("-");
@@ -84,9 +82,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void endAPP(View view){
-        toast("Select a new Date/Time/Place");
-        finish();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        toast("Please choose another Time/Date/Place");
     }
 
     /**

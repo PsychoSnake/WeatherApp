@@ -1,4 +1,4 @@
-package pt.isel.weatherapp.Picker_Fragments;
+package pt.isel.weatherapp.Menu;
 
 
 import android.app.Dialog;
@@ -11,7 +11,7 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.Locale;
 
-import pt.isel.weatherapp.Control.Menu;
+import pt.isel.weatherapp.Menu.Menu;
 
 public class TimePickerFragment extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener {

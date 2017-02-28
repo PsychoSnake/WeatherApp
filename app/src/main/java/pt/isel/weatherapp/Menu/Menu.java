@@ -1,8 +1,10 @@
-package pt.isel.weatherapp.Control;
+package pt.isel.weatherapp.Menu;
 
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Geocoder;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -12,9 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import pt.isel.weatherapp.Picker_Fragments.DatePickerFragment;
+import java.io.IOException;
+
 import pt.isel.weatherapp.R;
-import pt.isel.weatherapp.Picker_Fragments.TimePickerFragment;
+import pt.isel.weatherapp.Weather.MainActivity;
 
 public class Menu extends AppCompatActivity {
     private EditText place_name;
@@ -36,20 +39,29 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 boolean cont = true;
-                if(date_text.getText().length()==0){
-                    toast("No Date was Selected");
-                    cont = false;
-                }
-                if(time_text.getText().length()==0){
-                    toast("No Time was Selected");
-                    cont = false;
-                }
-                if(cont){
-                    Intent intent = new Intent(Menu.this, MainActivity.class);
-                    intent.putExtra("date_text",date_text.getText().toString());
-                    intent.putExtra("time_text",time_text.getText().toString());
-                    intent.putExtra("place_name", place_name.getText().toString());
-                    startActivity(intent);
+                Geocoder geo = new Geocoder(Menu.this);
+                try {
+                    if(date_text.length()==0){
+                        toast("No Date was Selected");
+                        cont = false;
+                    }
+                    if(time_text.length()==0){
+                        toast("No Time was Selected");
+                        cont = false;
+                    }
+                    if(geo.getFromLocationName(place_name.getText().toString(),1).size()==0){
+                        toast("No Country/City was Selected or the one selected doesn't exist");
+                        cont = false;
+                    }
+                    if(cont){
+                        Intent intent = new Intent(Menu.this, MainActivity.class);
+                        intent.putExtra("date_text",date_text.getText().toString());
+                        intent.putExtra("time_text",time_text.getText().toString());
+                        intent.putExtra("place_name", place_name.getText().toString());
+                        startActivity(intent);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -73,6 +85,21 @@ public class Menu extends AppCompatActivity {
         fragment.show(this.getFragmentManager(), "datePicker");
     }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        date_text.setText(savedInstanceState.getString("date_text"));
+        time_text.setText(savedInstanceState.getString("time_text"));
+        place_name.setText(savedInstanceState.getString("place_name"));
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle saveInstanceState) {
+        super.onSaveInstanceState(saveInstanceState);
+        saveInstanceState.putString("date_text",date_text.getText().toString());
+        saveInstanceState.putString("time_text",time_text.getText().toString());
+        saveInstanceState.putString("place_name", place_name.getText().toString());
+    }
 
     /**
      * Shows a message for the user
