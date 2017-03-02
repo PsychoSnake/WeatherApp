@@ -7,8 +7,7 @@ import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
-import android.widget.Button;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +21,6 @@ import pt.isel.weatherapp.R;
 
 public class MainActivity extends AppCompatActivity {
     private TextView temp, wind, cloud, humidity;
-    private Button return_app;
     private Manager manager = new Manager();
     private String place_name;
     private String[] dates,times;
@@ -36,36 +34,11 @@ public class MainActivity extends AppCompatActivity {
         wind = (TextView) findViewById(R.id.wind);
         cloud = (TextView) findViewById(R.id.cloud);
         humidity = (TextView) findViewById(R.id.humidity);
-        //return_app = (Button) findViewById(R.id.return_app);
         Intent intent = getIntent();
         place_name = intent.getStringExtra("place_name");
         dates = intent.getStringExtra("date_text").split("-");
         times = intent.getStringExtra("time_text").split(":");
         getWeatherInfo();
-        /*weather.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View view) {
-                try {
-                    if (place_name.getText().length() == 0) {
-                        toast("No Country/City selected.");
-                        return;
-                    }
-                    String bool = date.getText().length()!=Date.getDateSize()?"1":"0";
-                    bool += time.getText().length()!=8?"1":"0";
-                    Date dt = getdateInfos(bool);
-
-                    Place loc = new Place(list.get(0).getCountryName(), list.get(0).getLatitude(), list.get(0).getLongitude());
-                    String response = manager.download(loc,dt);
-                    JsonObject obj = manager.translateToJSON(response);
-                    extractInfo(obj);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (SecurityException e){
-                    e.getStackTrace();
-                }
-            }
-        });*/
-
     }
 
     private void getWeatherInfo() {
@@ -102,42 +75,6 @@ public class MainActivity extends AppCompatActivity {
         cloud.setText(cloudCover);
         humidity.setText(humidPer);
     }
-
-/*    *//**
-     * Gets the information about the date and time to get the weather
-     * @param bool specifies what the user had as input
-     * @return the specific date
-     *//*
-    private Date getdateInfos(String bool) {
-        Date dt = null;
-        String year,month,day,hour,minute,second;
-        Calendar calendar = Calendar.getInstance();
-        Locale lc = new Locale(Locale.getDefault().getDisplayLanguage());
-        year = calendar.get(Calendar.YEAR)+"";
-        month = String.format(lc,"%02d",calendar.get(Calendar.MONTH)+1);
-        day = String.format(lc,"%02d",calendar.get(Calendar.DAY_OF_MONTH));
-        hour = String.format(lc,"%02d",calendar.get(Calendar.HOUR_OF_DAY));
-        minute = String.format(lc,"%02d",calendar.get(Calendar.MINUTE));
-        second = String.format(lc,"%02d",calendar.get(Calendar.SECOND));
-        switch(bool) {
-            case "00":
-                dt = new Date(date.getText().toString().split("-"),time.getText().toString().split(":"));
-                break;
-            case "01":
-                toast("No Time selected, using current Time");
-                dt = new Date(date.getText().toString().split("-"),hour,minute,second);
-                break;
-            case "10":
-                toast("No Date selected, using current Day");
-                dt = new Date(year,month,day,time.getText().toString().split(":"));
-                break;
-            case "11":
-                toast("Nothing has been selected, using current Time/Day");
-                dt = new Date(year,month,day,hour,minute,second);
-                break;
-        }
-        return dt;
-    }*/
 
     /**
      * Shows a message for the user

@@ -39,18 +39,19 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 boolean cont = true;
+                String toast = "No ";
                 Geocoder geo = new Geocoder(Menu.this);
                 try {
                     if(date_text.length()==0){
-                        toast("No Date was Selected");
+                        toast += "Date";
                         cont = false;
                     }
                     if(time_text.length()==0){
-                        toast("No Time was Selected");
+                        toast += !cont? "/Time": "Time";
                         cont = false;
                     }
                     if(geo.getFromLocationName(place_name.getText().toString(),1).size()==0){
-                        toast("No Country/City was Selected or the one selected doesn't exist");
+                        toast += !cont? "/(Country/City)": "Country/City";
                         cont = false;
                     }
                     if(cont){
@@ -59,6 +60,9 @@ public class Menu extends AppCompatActivity {
                         intent.putExtra("time_text",time_text.getText().toString());
                         intent.putExtra("place_name", place_name.getText().toString());
                         startActivity(intent);
+                    }
+                    else{
+                        toast(toast+" was selected");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

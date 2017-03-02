@@ -26,6 +26,7 @@ public class NetworkManager extends AsyncTask<String, Void, String> {
         }
     }
 
+    private static final int MAXCHARS = 100;
     /**
      * Using the connection with the site gets its information using a InputStream
      * @param connection the connection to extract the information
@@ -36,9 +37,9 @@ public class NetworkManager extends AsyncTask<String, Void, String> {
         connection.connect();
         String ret = "";
         BufferedInputStream bis = new BufferedInputStream(connection.getInputStream());
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[MAXCHARS];
         int count;
-        while ((count = bis.read(buffer, 0, 1024)) != -1) {
+        while ((count = bis.read(buffer, 0, MAXCHARS)) != -1) {
             ret += new String(buffer, 0, count);
         }
         bis.close();

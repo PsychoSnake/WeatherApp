@@ -21,7 +21,7 @@ public class Manager {
      * @return returns the response in String format(json) from the site
      * @throws IOException
      */
-    public String download(Place loc, Date date) throws IOException {
+    String download(Place loc, Date date) throws IOException {
         String ulr = DARKSKY+"/"+UNIQUE_CODE+"/"+loc.toString()+","+date.toString()+"?units=auto";
         NetworkManager manager = new NetworkManager();
         String url = null;
@@ -38,7 +38,7 @@ public class Manager {
      * @param response the String to be transformed
      * @return returns the JSON after being translated
      */
-    public JsonObject translateToJSON(String response) {
+    JsonObject translateToJSON(String response) {
         return gson.fromJson(response,JsonObject.class);
     }
 }
